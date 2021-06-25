@@ -70,6 +70,25 @@ chmod +x install && ./install
 <small><b>NOTE:</b> If you face any problems while installing please read the `install` script source code,<br> i've attached further installtion instructions in the `install` script source <b>for those who face problems while installing</b></small>
 # Usage:
 
+`-t`: This option is to set the target which [single domains] to gather it's subdomains
+
+`-l`: This option is to specify a domains list to gather their subdomains [in the list every domain in a single line] such as:
+
+```
+example.com
+domains.com
+target.com
+```
+
+`-d` This option refers to the deep mode in knockpy tool, so to activate the deep scanning mode just use it like `-d true`
+
+`-f` This option refers to the fast mode in knockpy ttol, so to activate the fast scanning mode just use it like `-f true`
+
+`-w` This option is to set a wordlist for the gobuster tool, just use it like `-w <wordlist_path>`
+
+`-g` This option is to set a github token for github subdomain gathering mode, use it like `-g <github_token>`
+
+`-h` To display the help menue of the tool
 
 # Output Example:
 <div align="center">
