@@ -25,6 +25,42 @@ And it should work in other security distributions like:
 # Tool Mechanism:
 
 <div align="center">
-  <img src="subdomainer-map.png">
-  <div>
-    
+  <img src="Subdomainer - mindmap.png">
+  </div>
+
+## Subdomains & Domains Gathering:
+
+- Sublist3r
+
+- Amass
+  - Enum
+    - Passive Mode
+  - Intel
+    - Whois Mode
+
+- Github-Search
+  - Gathering Subdomains Through Github Searching
+
+- Knockpy
+  - Deep mode
+    - Gather much domains & subdomains through DNS, HTTP & HTTPS requests 
+  - Fast mode
+    - Gather much domains & subdomains through DNS requests only
+
+- asset finder
+
+- subfinder
+
+- gobuster
+  - enumerating subdomains through wordlist
+
+## Filtering Results:
+
+- Unuique result filtering.
+- Unique & live result filtering:
+  - httpx
+
+# Output Example:
+<div align="center">
+<img src="https://user-images.githubusercontent.com/66295316/123438943-3aec1980-d59f-11eb-98b4-71641c3d04ad.png" height="80%" width="80%">
+</div>
