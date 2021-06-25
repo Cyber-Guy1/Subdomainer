@@ -1,0 +1,428 @@
+#!/bin/bash
+
+cat <<"EOF"
+
+
+
+  _________    ___.        .___                    .__                     
+ /   _____/__ _\_ |__    __| _/____   _____ _____  |__| ____   ___________ 
+ \_____  \|  |  \ __ \  / __ |/  _ \ /     \\__  \ |  |/    \_/ __ \_  __ \
+ /        \  |  / \_\ \/ /_/ (  <_> )  Y Y  \/ __ \|  |   |  \  ___/|  | \/
+/_______  /____/|___  /\____ |\____/|__|_|  (____  /__|___|  /\___  >__|   
+        \/          \/      \/            \/     \/        \/     \/       
+
+		   🗲  Automated Subdomain Gathering Tool 🗲
+			  Developed By Momen Ali
+			      The Cyber Guy
+
+EOF
+
+input=$1
+
+help(){
+
+printf "
+
+\e[32m[\e[0m\e[31musage\e[0m\e[32m]:\e[0m
+
+\e[31m-h\e[0m \e[32m==>\e[0m \e[31mHelp Menue\e[0m
+\e[31m-t\e[0m \e[32m==>\e[0m \e[31mTarget Domain\e[0m
+\e[31m-l\e[0m \e[32m==>\e[0m \e[31mDomains List\e[0m
+\e[31m-w\e[0m \e[32m==>\e[0m \e[31mWordlist\e[0m
+\e[31m-d\e[0m \e[32m==>\e[0m \e[31mKnockpy Deep Mode\e[0m
+\e[31m-f\e[0m \e[32m==>\e[0m \e[31mKnockpy Fast Mode\e[0m
+\e[31m-g\e[0m \e[32m==>\e[0m \e[31mGithub Token\e[0m
+
+
+\e[32m[\e[0m\e[31mExplaination\e[0m\e[32m]:\e[0m
+
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-h\e[0m \e[32m:\e[0m It Show The Help Menue For You Such As\e[32m:\e[0m \e[36mSyntax\e[0m, \e[36mExamples\e[0m, \e[36mSwitches\e[0m
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-t\e[0m \e[32m:\e[0m To Use A Single Target Domain To Gather Subdomains On It \e[32m{\e[0m \e[36mPut The Domain Without http Or https\e[0m \e[32m}\e[0m
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-l\e[0m \e[32m:\e[0m To Use A Multible Domains Listed In Text File \e[32m{\e[0m \e[36m Put Every Domain In A Single Line Without http Or https\e[0m \e[32m}\e[0m
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-w\e[0m \e[32m:\e[0m To Use A Wordlist For The Tools That Support Enumeration List Based\e[0m \e[32m{\e[0m \e[36mOptionally\e[0m \e[32m}\e[0m
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-d\e[0m \e[32m:\e[0m To Use Knockpy In Deep Mode |\e[0m \e[36mSwitch Usage -> -d true or -d True\e[0m
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-f\e[0m \e[32m:\e[0m To Use Knockpy In Fast Mode |\e[0m \e[36mSwitch Usage -> -f true or -f True\e[0m
+\e[32m[\e[0m\e[31m+\e[0m\e[32m]\e[0m \e[36m-g\e[0m \e[32m:\e[0m Set Github Token For Gathering Subdomains From Github\e[0m \e[32m{\e[0m \e[36mOptionally\e[0m \e[32m}\e[0m
+
+\e[32m[\e[0m\e[31mExampels\e[0m\e[32m]:\e[0m
+
+\e[93m=================================================\e[0m
+               Single Domains Based
+\e[93m=================================================\e[0m
+
+\e[37m./subdomainer -t domain.com -f true -g 55aa66bb4aa8mm9mmss334422-weqas -w /usr/share/wordlist/dirbuster/directories.jbrofuzz\e[0m
+
+\e[37m./subdomainer -t domains.com -d true -g 55aa66bb4aa8mm9mmss334422-weqas -w /usr/share/wordlist/dirbuster/directories.jbrofuzz\e[0m
+
+
+\e[93m=================================================\e[0m
+               Domains List Based
+\e[93m=================================================\e[0m
+
+\e[37m./subdomainer -l domains.txt -d true -g 55aa66bb4aa8mm9mmss334422-weqas -w /usr/share/wordlist/dirbuster/directories.jbrofuzz\e[0m
+
+\e[37m./subdomainer -l domains.txt -f true -g 55aa66bb4aa8mm9mmss334422-weqas -w /usr/share/wordlist/dirbuster/directories.jbrofuzz\e[0m
+
+
+";
+
+}
+
+if [[ -z "${input}" ]];then
+
+help
+exit;
+
+fi
+
+while getopts "g:t:f:w:l:d:h" option; do
+   case $option in
+      h) 
+	
+	help  
+
+         exit;;
+       
+      d)
+
+         deep=$OPTARG;;
+      
+      l)
+
+      list=$OPTARG;;
+
+      w)
+
+      wordlist=$OPTARG;;
+
+      f)
+
+      fast=$OPTARG;;
+
+      t)
+
+      domains=$OPTARG;;
+
+      g)
+
+      gitoken=$OPTARG;;
+
+
+
+
+   esac
+done
+
+subf(){
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mSubfinder Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+
+subfinder -d $domains -o "$domains/$date/$domains-subfinder.txt"
+
+}
+
+asset(){
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mAssetfinder Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+
+assetfinder $domains | tee "$domains/$date/$domains-assetfinder.txt"
+
+}
+
+sublist(){
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mSublist3r Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+
+";
+
+python3 Tools/Sublist3r/sublist3r.py -d $domains -v -o "$domains/$date/$domains-sublist3r.txt"
+
+}
+
+gobus(){
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mGobuster Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+gobuster dns -d $domains -w $wordlist -o $domains/$date/$domains-gobuster.txt
+
+}
+
+ams(){
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+amass enum -passive -norecursive -noalts -d $domains -o $domains/$date/$domains-amass-enum.txt
+
+printf "
+
+\e[93m=================================================\e[0m
+            \e[37mSwitching To intel Module\e[0m
+\e[93m=================================================\e[0m
+
+"
+
+amass intel -whois -d $domains -o $domains/$date/$domains-amass-intel.txt
+
+}
+
+
+knockDeep(){
+
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+            \e[91m[Deep Mode Activated]\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+   mkdir -p $domains/$date/knockpy-deep/
+   chmod 777 $domains/$date/knockpy-deep/
+   knockpy $domains -o $domains/$date/knockpy-deep/ 
+}
+
+knockFast(){
+
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+            \e[91m[Fast Mode Activated]\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+   mkdir -p $domains/$date/knockpy-fast/
+   chmod 777 $domains/$date/knockpy-fast/
+   knockpy $domains --no-http -o $domains/$date/knockpy-fast/ 
+}
+
+knockQuick(){
+
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+            \e[91m[Quick Mode Activated]\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+   mkdir -p knockpy-quick/
+   chmod 777 knockpy-quick/
+   knockpy $domains --no-http --no-local -o knockpy-quick/
+
+}
+
+
+date=$(date +'%m-%d-%Y')
+
+if [[ -z "${domains}" ]];then
+
+:
+
+else  
+
+mkdir -p $domains;
+mkdir -p $domains/$date;
+
+subf
+asset
+sublist
+ams
+
+if [[ $wordlist ]];then
+
+gobus
+
+
+fi
+
+if [[ $gitoken ]];then 
+
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mGitsearch Is Woriking On\e[0m \e[31m$domains\e[0m
+         \e[91m[Gitsubdomains Mode Activated]\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+python3 Tools/github-search/github-subdomains.py -d $domains -t $gitoken -v | tee $domains/$date/githubsubs.txt; 
+
+fi
+
+if [[ $fast == "true" ]];then
+
+knockFast
+
+elif [[ $fast == "True" ]];then
+
+knockFast
+
+elif [[ $deep == "true" ]];then
+
+knockDeep
+
+elif [[ $deep == "True" ]];then
+
+knockDeep
+
+fi
+
+cd $domains/$date/;
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mSorting Unique Subs On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+cat *.txt | sort -u | tee all.txt
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mHttpx Is Working On \e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+cat *.txt | httpx | sort -u | tee all-live.txt
+
+
+cd ../../
+
+printf "\n\n\e[92m=============================================\e[0m";
+printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
+printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
+printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
+printf "\n\n\e[92m=============================================\e[0m\n\n";
+
+fi
+
+if [[ -z "${list}" ]];then 
+
+:
+
+else
+
+for domains in $(cat $list)
+do
+
+mkdir -p $domains;
+mkdir -p $domains/$date;
+
+subf
+asset
+sublist
+ams
+
+if [[ $wordlist ]];then
+
+gobus
+
+fi
+
+if [[ $gitoken ]];then 
+
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mGitsearch Is Woriking On\e[0m \e[31m$domains\e[0m
+         \e[91m[Gitsubdomains Mode Activated]\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+python3 Tools/github-search/github-subdomains.py -d $domains -t $gitoken -v | tee $domains/$date/githubsubs.txt; 
+
+fi
+
+cd $domains/$date/;
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mSorting Unique Subs On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+cat *.txt | sort -u | tee all.txt
+
+printf "
+
+\e[96m##################################################\e[0m
+   \e[96mHttpx Is Working On \e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+";
+
+cat *.txt | httpx | sort -u | tee all-live.txt
+
+
+cd ../../
+
+if [[ $fast == "true" ]];then
+
+knockFast
+
+elif [[ $fast == "True" ]];then
+
+knockFast
+
+elif [[ $deep == "true" ]];then
+
+knockDeep
+
+elif [[ $deep == "True" ]];then
+
+knockDeep
+
+fi
+
+done
+
+printf "\n\n\e[92m=============================================\e[0m";
+printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
+printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
+printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
+printf "\n\n\e[92m=============================================\e[0m\n\n";
+
+fi
