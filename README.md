@@ -60,6 +60,17 @@ And it should work in other security distributions like:
 - Unique & live result filtering:
   - httpx
 
+# Installation:
+
+1- Simply change the installation script permession to executable mode then run it:
+
+```
+chmod +x install && ./install
+```
+
+# Usage:
+
+
 # Output Example:
 <div align="center">
 <img src="https://user-images.githubusercontent.com/66295316/123438943-3aec1980-d59f-11eb-98b4-71641c3d04ad.png" height="80%" width="80%">
