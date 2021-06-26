@@ -128,21 +128,6 @@ subfinder -d $domains -o "$domains/$date/$domains-subfinder.txt"
 
 }
 
-asset(){
-
-printf "
-
-\e[96m##################################################\e[0m
-   \e[96mAssetfinder Is Woriking On\e[0m \e[31m$domains\e[0m
-\e[96m##################################################\e[0m
-
-";
-
-
-assetfinder $domains | tee "$domains/$date/$domains-assetfinder.txt"
-
-}
-
 sublist(){
 
 printf "
@@ -259,7 +244,6 @@ mkdir -p $domains;
 mkdir -p $domains/$date;
 
 subf
-asset
 sublist
 ams
 
@@ -349,7 +333,6 @@ mkdir -p $domains;
 mkdir -p $domains/$date;
 
 subf
-asset
 sublist
 ams
 
