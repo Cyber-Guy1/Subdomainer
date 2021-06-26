@@ -63,6 +63,13 @@ printf "\n\n\e[92m=============================================\e[0m\n\n";
 
 sudo apt -y install golang
 
+
+printf "\n\n\e[92m=============================================\e[0m";
+printf "\n\n\e[92m             Installing Gobuster              \e[0m";
+printf "\n\n\e[92m=============================================\e[0m\n\n";
+
+go install github.com/OJ/gobuster/v3@latest
+
 printf "\n\n\e[92m=============================================\e[0m";
 printf "\n\n\e[92m      Installing Addtional Packages           \e[0m";
 printf "\n\n\e[92m=============================================\e[0m\n\n";
@@ -151,6 +158,10 @@ GO111MODULE=on go get -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder
 # sudo mv subfinder /usr/bin
 #
 ###########################################################################################################
+
+cd ~/go/bin/
+
+sudo cp * /usr/bin/
 
 printf "\n\n\e[92m=============================================\e[0m";
 printf "\n\n\e[92m                 Happy Hacking               \e[0m";
