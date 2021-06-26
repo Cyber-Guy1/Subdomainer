@@ -390,9 +390,9 @@ knockFastIgnore(){
 
 ";
 
-   mkdir -p result/$date/knockpy-fast/
-   chmod 777 result/$date/knockpy-fast/
-   knockpy $domains --no-http -o result/$date/knockpy-fast/ 
+   mkdir -p result/$date/$domains-knockpy-fast/
+   chmod 777 result/$date/$domains-knockpy-fast/
+   knockpy $domains --no-http -o result/$date/$domains-knockpy-fast/ 
 
 }
 
@@ -406,9 +406,9 @@ knockDeepIgnore(){
 
 ";
 
-   mkdir -p result/$date/knockpy-deep/
-   chmod 777 result/$date/knockpy-deep/
-   knockpy $domains -o result/$date/knockpy-deep/ 
+   mkdir -p result/$date/$domains-knockpy-deep/
+   chmod 777 result/$date/$domains-knockpy-deep/
+   knockpy $domains -o result/$date/$domains-knockpy-deep/ 
 
 }
 
