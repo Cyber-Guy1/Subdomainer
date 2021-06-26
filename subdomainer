@@ -539,7 +539,7 @@ printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
 printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
 printf "\n\n\e[92m=============================================\e[0m\n\n";
 
-
+exit
 
 
 else
@@ -625,5 +625,7 @@ printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️         
 printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
 printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
 printf "\n\n\e[92m=============================================\e[0m\n\n";
+
+exit
 
 fi
