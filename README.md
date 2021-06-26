@@ -47,8 +47,6 @@ And it should work in other security distributions like:
   - Fast mode
     - Gather much domains & subdomains through DNS requests only
 
-- asset finder
-
 - subfinder
 
 - gobuster
@@ -88,6 +86,29 @@ target.com
 
 `-g` This option is to set a github token for github subdomain gathering mode, use it like `-g <github_token>`
 
+ `-i` This option is to ignore directory splitting while scanning a whole list, for example if the list consists of:
+ 
+ ```
+example.com
+domains.com
+target.com
+```
+
+If you do not add the `-i` option, the tool will make each target result in a single directory like:
+
+```
+example.com/
+
+domains.com/
+
+target.com/
+```
+
+But if you add the `-i` option, all the result will be saved in a single directory like:
+
+`result/`
+
+ 
 `-h` To display the help menue of the tool
 
 # Output Example:
