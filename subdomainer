@@ -303,10 +303,12 @@ cat *.txt | httpx | sort -u | tee all-live.txt
 cd ../../
 
 printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
-printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
-printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
+printf "\n\n\e[92m   🌩️  Application shocked successfully 🌩️               \e[0m";
+printf "\n\n\e[92m                Stay secure ;)               \e[0m";
+printf "\n\n\e[92m      \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
 printf "\n\n\e[92m=============================================\e[0m\n\n";
+
+exit
 
 fi
 
@@ -418,12 +420,13 @@ if [[ -z "${list}" ]];then
 
 else
 
+
+if [[ $ignore == "true" ]];then
+
 for domains in $(cat $list)
 
 do
 
-if [[ $ignore == "true" ]];then
-
 mkdir -p result/$date;
 
 subfIgnore
@@ -473,15 +476,22 @@ cat *.txt | httpx | sort -u | tee all-live.txt
 
 
 cd ../../
+
+done
 
 printf "\n\n\e[92m=============================================\e[0m";
 printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
 printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
-printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
+printf "\n\n\e[92m            \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
 printf "\n\n\e[92m=============================================\e[0m\n\n";
 
+exit
 
 elif [[ $ignore == "True" ]];then
+
+for domains in $(cat $list)
+
+do
 
 mkdir -p result/$date;
 
@@ -532,6 +542,8 @@ cat *.txt | httpx | sort -u | tee all-live.txt
 
 
 cd ../../
+
+done
 
 printf "\n\n\e[92m=============================================\e[0m";
 printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
@@ -541,8 +553,11 @@ printf "\n\n\e[92m=============================================\e[0m\n\n";
 
 exit
 
-
 else
+
+for domains in $(cat $list)
+
+do
 
 mkdir -p $domains;
 mkdir -p $domains/$date;
@@ -615,17 +630,17 @@ knockDeep
 
 fi
 
-fi
-
-
 done
 
+exit
+
 printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
-printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
-printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
+printf "\n\n\e[92m   🌩️  Applications shocked successfully 🌩️               \e[0m";
+printf "\n\n\e[92m                Stay secure ;)               \e[0m";
+printf "\n\n\e[92m        \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
 printf "\n\n\e[92m=============================================\e[0m\n\n";
 
-exit
+fi
+
 
 fi
