@@ -27,58 +27,51 @@ EOF
 mkdir -p Tools
 
 cd Tools
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m           	Updating Repos               \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m           	Updating Repos               \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt update
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Installing Git              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Installing Git              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt -y install git
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Installing Python3              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Installing Python3              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt -y install python3
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m              Installing PIP3              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m              Installing PIP3              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt -y install python3-pip
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Installing Python2              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Installing Python2              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt -y install python2
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m              Installing Golang              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m              Installing Golang              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt -y install golang
 
-
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Installing Gobuster              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
-
-go install github.com/OJ/gobuster/v3@latest
-
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m      Installing Addtional Packages           \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m      Installing Addtional Packages           \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 sudo apt -y install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev build-essential libssl-dev libffi-dev python-dev libldns-dev jq ruby-full python3-setuptools python3-dnspython rename findutils
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m           Sublist3r Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m           Sublist3r Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 git clone https://github.com/aboul3la/Sublist3r.git
 
@@ -88,15 +81,15 @@ pip3 install -r requirements.txt
 
 cd ../
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m         Github-Search Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m         Github-Search Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 git clone https://github.com/gwen001/github-search.git
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Knockpy Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Knockpy Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 git clone https://github.com/guelfoweb/knock.git
 
@@ -106,10 +99,9 @@ sudo python3 setup.py install
 
 cd ../
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Aquatone Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
-
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Aquatone Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 go get github.com/michenriksen/aquatone
 
@@ -122,53 +114,60 @@ go get github.com/michenriksen/aquatone
 #
 ###########################################################################################################
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Httpx Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Httpx Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 GO111MODULE=on go get -v github.com/projectdiscovery/httpx/cmd/httpx
 
-
-########################################################################################################### 
+###########################################################################################################
 # If Not Installed Do The Following Commands:
-# 
+#
 # wget https://github.com/projectdiscovery/httpx/releases/download/v1.1.0/httpx_1.1.0_linux_amd64.tar.gz
 # tar -xvf httpx_1.1.0_linux_amd64.tar.gz
 # sudo mv httpx /usr/bin
 #
 ###########################################################################################################
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Assetfinder Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Assetfinder Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 go get -u github.com/tomnomnom/assetfinder
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m             Subdfinder Installing              \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             Subdfinder Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
 GO111MODULE=on go get -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder
 
-########################################################################################################### 
+###########################################################################################################
 # If Not Installed Do The Following Commands:
-# 
+#
 # wget https://github.com/projectdiscovery/subfinder/releases/download/v2.4.8/subfinder_2.4.8_linux_amd64.tar.gz
 # tar -xvf subfinder_2.4.8_linux_amd64.tar.gz
 # sudo mv subfinder /usr/bin
 #
 ###########################################################################################################
 
-cd ~/go/bin/
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m           	Installing CRTSh               \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
 
-sudo cp * /usr/bin/
+git clone https://github.com/YashGoti/crtsh.git
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m                 Happy Hacking               \e[0m";
-printf "\n\n\e[92m                 Stay Secure ;)               \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+cd crtsh/
 
-printf "\n\n\e[96m===================================================================================\e[0m";
-printf "\n\n\e[96m                              Attention Please                                     \e[0m";
-printf "\n\n\e[96mIf There Any Tools Not Installed Please See The install Script Source              \e[0m";
-printf "\n\n\e[96m===================================================================================\e[0m\n\n";
+pip3 install -r requirements.txt
+
+cd ../
+
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m                 Happy Hacking               \e[0m"
+printf "\n\n\e[92m                 Stay Secure ;)               \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
+
+printf "\n\n\e[96m===================================================================================\e[0m"
+printf "\n\n\e[96m                              Attention Please                                     \e[0m"
+printf "\n\n\e[96mIf There Any Tools Not Installed Please See The install Script Source              \e[0m"
+printf "\n\n\e[96m===================================================================================\e[0m\n\n"
