@@ -165,7 +165,7 @@ gobus() {
 
 "
 
-   gobuster dns -u $domains -w $wordlist -o $domains/$date/$domains-gobuster.txt
+   gobuster dns -d $domains -w $wordlist -o $domains/$date/$domains-gobuster.txt
 
 }
 
@@ -378,7 +378,7 @@ gobusIgnore() {
 
 "
 
-   gobuster dns -u $domains -w $wordlist -o "result/$date/$domains-gobuster.txt"
+   gobuster dns -d $domains -w $wordlist -o "result/$date/$domains-gobuster.txt"
 
 }
 
