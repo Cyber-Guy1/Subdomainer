@@ -163,6 +163,14 @@ pip3 install -r requirements.txt
 cd ../
 
 printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m   Installing Additional Python Modules               \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
+
+pip3 install colored
+pip3 install tldextract
+
+
+printf "\n\n\e[92m=============================================\e[0m"
 printf "\n\n\e[92m                 Happy Hacking               \e[0m"
 printf "\n\n\e[92m                 Stay Secure ;)               \e[0m"
 printf "\n\n\e[92m=============================================\e[0m\n\n"
