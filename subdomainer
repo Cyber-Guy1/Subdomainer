@@ -131,7 +131,7 @@ subf() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mSubfinder Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mSubfinder Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -145,7 +145,7 @@ sublist() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mSublist3r Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mSublist3r Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 
@@ -160,7 +160,7 @@ gobus() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mGobuster Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mGobuster Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -174,7 +174,7 @@ ams() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mAmass Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -198,7 +198,7 @@ knockDeep() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mKnockpy Is Working On\e[0m \e[31m$domains\e[0m
             \e[91m[Deep Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
@@ -214,7 +214,7 @@ knockFast() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mKnockpy Is Working On\e[0m \e[31m$domains\e[0m
             \e[91m[Fast Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
@@ -230,7 +230,7 @@ crt() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mAmass Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -264,7 +264,7 @@ else
       printf "
 
 \e[96m##################################################\e[0m
-   \e[96mGitsearch Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mGitsearch Is Working On\e[0m \e[31m$domains\e[0m
          \e[91m[Gitsubdomains Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
@@ -331,7 +331,7 @@ crtIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mAmass Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -344,7 +344,7 @@ subfIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mSubfinder Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mSubfinder Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -358,7 +358,7 @@ sublistIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mSublist3r Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mSublist3r Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 
@@ -373,7 +373,7 @@ gobusIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mGobuster Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mGobuster Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -387,7 +387,7 @@ amsIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mAmass Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -410,7 +410,7 @@ knockFastIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mKnockpy Is Working On\e[0m \e[31m$domains\e[0m
             \e[91m[Fast Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
@@ -426,7 +426,7 @@ knockDeepIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mKnockpy Is Working On\e[0m \e[31m$domains\e[0m
             \e[91m[Deep Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
@@ -595,7 +595,7 @@ else
             printf "
 
 \e[96m##################################################\e[0m
-   \e[96mGitsearch Is Woriking On\e[0m \e[31m$domains\e[0m
+   \e[96mGitsearch Is Working On\e[0m \e[31m$domains\e[0m
          \e[91m[Gitsubdomains Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
