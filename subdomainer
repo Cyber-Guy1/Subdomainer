@@ -19,9 +19,9 @@ EOF
 
 input=$1
 
-help(){
+help() {
 
-printf "
+   printf "
 
 \e[32m[\e[0m\e[31musage\e[0m\e[32m]:\e[0m
 
@@ -67,116 +67,121 @@ printf "
 \e[37m./subdomainer -l domains.txt -f true -g 55aa66bb4aa8mm9mmss334422-weqas -w /usr/share/wordlist/dirbuster/directories.jbrofuzz\e[0m
 
 
-";
+"
 
 }
 
-if [[ -z "${input}" ]];then
+if [[ -z "${input}" ]]; then
 
-help
-exit;
+   help
+   exit
 
 fi
 
 while getopts "i:g:t:f:w:l:d:h" option; do
    case $option in
-      h) 
-	
-	help  
+   h)
 
-         exit;;
-       
-      d)
+      help
 
-         deep=$OPTARG;;
-      
-      l)
+      exit
+      ;;
 
-      list=$OPTARG;;
+   d)
 
-      w)
+      deep=$OPTARG
+      ;;
 
-      wordlist=$OPTARG;;
+   l)
 
-      f)
+      list=$OPTARG
+      ;;
 
-      fast=$OPTARG;;
+   w)
 
-      t)
+      wordlist=$OPTARG
+      ;;
 
-      domains=$OPTARG;;
+   f)
 
-      g)
+      fast=$OPTARG
+      ;;
 
-      gitoken=$OPTARG;;
+   t)
 
-      i)
+      domains=$OPTARG
+      ;;
 
-      ignore=$OPTARG;;
+   g)
 
+      gitoken=$OPTARG
+      ;;
 
+   i)
 
+      ignore=$OPTARG
+      ;;
 
    esac
+
 done
 
-subf(){
+subf() {
 
-printf "
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mSubfinder Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-
-subfinder -d $domains -o "$domains/$date/$domains-subfinder.txt"
+   subfinder -d $domains -o "$domains/$date/$domains-subfinder.txt"
 
 }
 
-sublist(){
+sublist() {
 
-printf "
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mSublist3r Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 
-";
+"
 
-python3 Tools/Sublist3r/sublist3r.py -d $domains -v -o "$domains/$date/$domains-sublist3r.txt"
+   python3 Tools/Sublist3r/sublist3r.py -d $domains -v -o "$domains/$date/$domains-sublist3r.txt"
 
 }
 
-gobus(){
+gobus() {
 
-printf "
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mGobuster Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-gobuster dns -d $domains -w $wordlist -o $domains/$date/$domains-gobuster.txt
+   gobuster dns -d $domains -w $wordlist -o $domains/$date/$domains-gobuster.txt
 
 }
 
-ams(){
+ams() {
 
-printf "
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-amass enum -passive -norecursive -noalts -d $domains -o $domains/$date/$domains-amass-enum.txt
+   amass enum -passive -norecursive -noalts -d $domains -o $domains/$date/$domains-amass-enum.txt
 
-printf "
+   printf "
 
 \e[93m=================================================\e[0m
             \e[37mSwitching To intel Module\e[0m
@@ -184,12 +189,11 @@ printf "
 
 "
 
-amass intel -whois -d $domains -o $domains/$date/$domains-amass-intel.txt
+   amass intel -whois -d $domains -o $domains/$date/$domains-amass-intel.txt
 
 }
 
-
-knockDeep(){
+knockDeep() {
 
    printf "
 
@@ -198,14 +202,14 @@ knockDeep(){
             \e[91m[Deep Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
    mkdir -p $domains/$date/knockpy-deep/
    chmod 777 $domains/$date/knockpy-deep/
-   knockpy $domains -o $domains/$date/knockpy-deep/ 
+   knockpy $domains -o $domains/$date/knockpy-deep/
 }
 
-knockFast(){
+knockFast() {
 
    printf "
 
@@ -214,120 +218,142 @@ knockFast(){
             \e[91m[Fast Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
    mkdir -p $domains/$date/knockpy-fast/
    chmod 777 $domains/$date/knockpy-fast/
-   knockpy $domains --no-http -o $domains/$date/knockpy-fast/ 
+   knockpy $domains --no-http -o $domains/$date/knockpy-fast/
 }
 
+crt() {
+
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+"
+
+   crtsh -d $domains | tee $domains/$date/$domains-crtsh.txt
+}
 
 date=$(date +'%m-%d-%Y')
 
-if [[ -z "${domains}" ]];then
+if [[ -z "${domains}" ]]; then
 
-:
+   :
 
-else  
+else
 
-mkdir -p $domains;
-mkdir -p $domains/$date;
+   mkdir -p $domains
+   mkdir -p $domains/$date
 
-subf
-sublist
-ams
+   subf
+   sublist
+   ams
 
-if [[ $wordlist ]];then
+   if [[ $wordlist ]]; then
 
-gobus
+      gobus
 
+   fi
 
-fi
+   if [[ $gitoken ]]; then
 
-if [[ $gitoken ]];then 
-
-   printf "
+      printf "
 
 \e[96m##################################################\e[0m
    \e[96mGitsearch Is Woriking On\e[0m \e[31m$domains\e[0m
          \e[91m[Gitsubdomains Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-python3 Tools/github-search/github-subdomains.py -d $domains -t $gitoken -v | tee $domains/$date/githubsubs.txt; 
+      python3 Tools/github-search/github-subdomains.py -d $domains -t $gitoken -v | tee $domains/$date/githubsubs.txt
 
-fi
+   fi
 
-if [[ $fast == "true" ]];then
+   if [[ $fast == "true" ]]; then
 
-knockFast
+      knockFast
 
-elif [[ $fast == "True" ]];then
+   elif [[ $fast == "True" ]]; then
 
-knockFast
+      knockFast
 
-elif [[ $deep == "true" ]];then
+   elif [[ $deep == "true" ]]; then
 
-knockDeep
+      knockDeep
 
-elif [[ $deep == "True" ]];then
+   elif [[ $deep == "True" ]]; then
 
-knockDeep
+      knockDeep
 
-fi
+   fi
 
-cd $domains/$date/;
+   cd $domains/$date/
 
-printf "
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mSorting Unique Subs On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | sort -u | tee all.txt
+   cat *.txt | sort -u | tee all.txt
 
-printf "
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mHttpx Is Working On \e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | httpx | sort -u | tee all-live.txt
+   cat *.txt | httpx | sort -u | tee all-live.txt
 
+   cd ../../
 
-cd ../../
+   printf "\n\n\e[92m=============================================\e[0m"
+   printf "\n\n\e[92m   🌩️  Application shocked successfully 🌩️               \e[0m"
+   printf "\n\n\e[92m                Stay secure ;)               \e[0m"
+   printf "\n\n\e[92m      \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m"
+   printf "\n\n\e[92m=============================================\e[0m\n\n"
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m   🌩️  Application shocked successfully 🌩️               \e[0m";
-printf "\n\n\e[92m                Stay secure ;)               \e[0m";
-printf "\n\n\e[92m      \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
-
-exit
+   exit
 
 fi
 
-subfIgnore(){
+crtIgnore() {
 
-printf "
+   printf "
+
+\e[96m##################################################\e[0m
+   \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
+\e[96m##################################################\e[0m
+
+"
+
+   crtsh -d $domains | tee "result/$date/$domains-crtsh.txt"
+}
+
+subfIgnore() {
+
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mSubfinder Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-
-subfinder -d $domains -o "result/$date/$domains-subfinder.txt"
+   subfinder -d $domains -o "result/$date/$domains-subfinder.txt"
 
 }
 
-sublistIgnore(){
+sublistIgnore() {
 
    printf "
 
@@ -336,14 +362,13 @@ sublistIgnore(){
 \e[96m##################################################\e[0m
 
 
-";
+"
 
-python3 Tools/Sublist3r/sublist3r.py -d $domains -v -o "result/$date/$domains-sublist3r.txt"
-
+   python3 Tools/Sublist3r/sublist3r.py -d $domains -v -o "result/$date/$domains-sublist3r.txt"
 
 }
 
-gobusIgnore(){
+gobusIgnore() {
 
    printf "
 
@@ -351,14 +376,13 @@ gobusIgnore(){
    \e[96mGobuster Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-gobuster dns -d $domains -w $wordlist -o "result/$date/$domains-gobuster.txt"
-
+   gobuster dns -d $domains -w $wordlist -o "result/$date/$domains-gobuster.txt"
 
 }
 
-amsIgnore(){
+amsIgnore() {
 
    printf "
 
@@ -366,11 +390,11 @@ amsIgnore(){
    \e[96mAmass Is Woriking On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-amass enum -passive -norecursive -noalts -d "$domains -o result/$date/$domains-amass-enum.txt"
+   amass enum -passive -norecursive -noalts -d "$domains -o result/$date/$domains-amass-enum.txt"
 
-printf "
+   printf "
 
 \e[93m=================================================\e[0m
             \e[37mSwitching To intel Module\e[0m
@@ -378,269 +402,261 @@ printf "
 
 "
 
-amass intel -whois -d $domains -o "result/$date/$domains-amass-intel.txt"
+   amass intel -whois -d $domains -o "result/$date/$domains-amass-intel.txt"
 
 }
 
-knockFastIgnore(){
-      printf "
+knockFastIgnore() {
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
             \e[91m[Fast Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
    mkdir -p result/$date/$domains-knockpy-fast/
    chmod 777 result/$date/$domains-knockpy-fast/
-   knockpy $domains --no-http -o result/$date/$domains-knockpy-fast/ 
+   knockpy $domains --no-http -o result/$date/$domains-knockpy-fast/
 
 }
 
-knockDeepIgnore(){
-      printf "
+knockDeepIgnore() {
+   printf "
 
 \e[96m##################################################\e[0m
    \e[96mKnockpy Is Woriking On\e[0m \e[31m$domains\e[0m
             \e[91m[Deep Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
    mkdir -p result/$date/$domains-knockpy-deep/
    chmod 777 result/$date/$domains-knockpy-deep/
-   knockpy $domains -o result/$date/$domains-knockpy-deep/ 
+   knockpy $domains -o result/$date/$domains-knockpy-deep/
 
 }
 
-if [[ -z "${list}" ]];then 
+if [[ -z "${list}" ]]; then
 
-:
+   :
 
 else
 
+   if [[ $ignore == "true" ]]; then
 
-if [[ $ignore == "true" ]];then
+      for domains in $(cat $list); do
 
-for domains in $(cat $list)
+         mkdir -p result/$date
 
-do
+         subfIgnore
+         sublistIgnore
+         gobusIgnore
+         amsIgnore
+         crtIgnore
 
-mkdir -p result/$date;
+         if [[ $fast == "true" ]]; then
 
-subfIgnore
-sublistIgnore
-gobusIgnore
-amsIgnore
+            knockFastIgnore
 
-if [[ $fast == "true" ]];then
+         elif [[ $fast == "True" ]]; then
 
-knockFastIgnore
+            knockFastIgnore
 
-elif [[ $fast == "True" ]];then
+         elif [[ $deep == "true" ]]; then
 
-knockFastIgnore
+            knockDeepIgnore
 
-elif [[ $deep == "true" ]];then
+         elif [[ $deep == "True" ]]; then
 
-knockDeepIgnore
+            knockDeepIgnore
 
-elif [[ $deep == "True" ]];then
+         fi
 
-knockDeepIgnore
+         cd result/$date/
 
-fi
-
-cd result/$date/;
-
-printf "
+         printf "
 
 \e[96m##################################################\e[0m
    \e[96mSorting Unique Subs On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | sort -u | tee all.txt
+         cat *.txt | sort -u | tee all.txt
 
-printf "
+         printf "
 
 \e[96m##################################################\e[0m
    \e[96mHttpx Is Working On \e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | httpx | sort -u | tee all-live.txt
+         cat *.txt | httpx | sort -u | tee all-live.txt
 
+         cd ../../
 
-cd ../../
+      done
 
-done
+      printf "\n\n\e[92m=============================================\e[0m"
+      printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m"
+      printf "\n\n\e[92m                 Stay secure ;)               \e[0m"
+      printf "\n\n\e[92m            \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m"
+      printf "\n\n\e[92m=============================================\e[0m\n\n"
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
-printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
-printf "\n\n\e[92m            \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+      exit
 
-exit
+   elif [[ $ignore == "True" ]]; then
 
-elif [[ $ignore == "True" ]];then
+      for domains in $(cat $list); do
 
-for domains in $(cat $list)
+         mkdir -p result/$date
 
-do
+         subfIgnore
+         sublistIgnore
+         gobusIgnore
+         amsIgnore
+         crtIgnore
 
-mkdir -p result/$date;
+         if [[ $fast == "true" ]]; then
 
-subfIgnore
-sublistIgnore
-gobusIgnore
-amsIgnore
+            knockFastIgnore
 
-if [[ $fast == "true" ]];then
+         elif [[ $fast == "True" ]]; then
 
-knockFastIgnore
+            knockFastIgnore
 
-elif [[ $fast == "True" ]];then
+         elif [[ $deep == "true" ]]; then
 
-knockFastIgnore
+            knockDeepIgnore
 
-elif [[ $deep == "true" ]];then
+         elif [[ $deep == "True" ]]; then
 
-knockDeepIgnore
+            knockDeepIgnore
 
-elif [[ $deep == "True" ]];then
+         fi
 
-knockDeepIgnore
+         cd result/$date/
 
-fi
-
-cd result/$date/;
-
-printf "
+         printf "
 
 \e[96m##################################################\e[0m
    \e[96mSorting Unique Subs On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | sort -u | tee all.txt
+         cat *.txt | sort -u | tee all.txt
 
-printf "
+         printf "
 
 \e[96m##################################################\e[0m
    \e[96mHttpx Is Working On \e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | httpx | sort -u | tee all-live.txt
+         cat *.txt | httpx | sort -u | tee all-live.txt
 
+         cd ../../
 
-cd ../../
+      done
 
-done
+      printf "\n\n\e[92m=============================================\e[0m"
+      printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m"
+      printf "\n\n\e[92m                 Stay secure ;)               \e[0m"
+      printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m"
+      printf "\n\n\e[92m=============================================\e[0m\n\n"
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m    🌩️  Application shocked successfully 🌩️               \e[0m";
-printf "\n\n\e[92m                 Stay secure ;)               \e[0m";
-printf "\n\n\e[92m          \e[5mJob finsihed in \e[91m$domains\e[0m\e[25m               \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
+      exit
 
-exit
+   else
 
-else
+      for domains in $(cat $list); do
 
-for domains in $(cat $list)
+         mkdir -p $domains
+         mkdir -p $domains/$date
 
-do
+         subf
+         sublist
+         ams
+         crt
 
-mkdir -p $domains;
-mkdir -p $domains/$date;
+         if [[ $wordlist ]]; then
 
-subf
-sublist
-ams
+            gobus
 
-if [[ $wordlist ]];then
+         fi
 
-gobus
+         if [[ $gitoken ]]; then
 
-fi
-
-if [[ $gitoken ]];then 
-
-   printf "
+            printf "
 
 \e[96m##################################################\e[0m
    \e[96mGitsearch Is Woriking On\e[0m \e[31m$domains\e[0m
          \e[91m[Gitsubdomains Mode Activated]\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-python3 Tools/github-search/github-subdomains.py -d $domains -t $gitoken -v | tee $domains/$date/githubsubs.txt; 
+            python3 Tools/github-search/github-subdomains.py -d $domains -t $gitoken -v | tee $domains/$date/githubsubs.txt
 
-fi
+         fi
 
-cd $domains/$date/;
+         cd $domains/$date/
 
-printf "
+         printf "
 
 \e[96m##################################################\e[0m
    \e[96mSorting Unique Subs On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | sort -u | tee all.txt
+         cat *.txt | sort -u | tee all.txt
 
-printf "
+         printf "
 
 \e[96m##################################################\e[0m
    \e[96mHttpx Is Working On \e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
-";
+"
 
-cat *.txt | httpx | sort -u | tee all-live.txt
+         cat *.txt | httpx | sort -u | tee all-live.txt
 
+         cd ../../
 
-cd ../../
+         if [[ $fast == "true" ]]; then
 
-if [[ $fast == "true" ]];then
+            knockFast
 
-knockFast
+         elif [[ $fast == "True" ]]; then
 
-elif [[ $fast == "True" ]];then
+            knockFast
 
-knockFast
+         elif [[ $deep == "true" ]]; then
 
-elif [[ $deep == "true" ]];then
+            knockDeep
 
-knockDeep
+         elif [[ $deep == "True" ]]; then
 
-elif [[ $deep == "True" ]];then
+            knockDeep
 
-knockDeep
+         fi
 
-fi
+      done
 
-done
+      exit
 
-exit
+      printf "\n\n\e[92m=============================================\e[0m"
+      printf "\n\n\e[92m   🌩️  Applications shocked successfully 🌩️               \e[0m"
+      printf "\n\n\e[92m                Stay secure ;)               \e[0m"
+      printf "\n\n\e[92m        \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m"
+      printf "\n\n\e[92m=============================================\e[0m\n\n"
 
-printf "\n\n\e[92m=============================================\e[0m";
-printf "\n\n\e[92m   🌩️  Applications shocked successfully 🌩️               \e[0m";
-printf "\n\n\e[92m                Stay secure ;)               \e[0m";
-printf "\n\n\e[92m        \e[5mJob finsihed in \e[91m$list\e[0m\e[25m               \e[0m";
-printf "\n\n\e[92m=============================================\e[0m\n\n";
-
-fi
-
+   fi
 
 fi
