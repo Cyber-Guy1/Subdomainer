@@ -230,7 +230,7 @@ crt() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mAmass Is Working On\e[0m \e[31m$domains\e[0m
+   \e[96mCRTsh Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
@@ -331,12 +331,12 @@ crtIgnore() {
    printf "
 
 \e[96m##################################################\e[0m
-   \e[96mAmass Is Working On\e[0m \e[31m$domains\e[0m
+   \e[96mCRTsh Is Working On\e[0m \e[31m$domains\e[0m
 \e[96m##################################################\e[0m
 
 "
 
-   crtsh -d $domains | tee "result/$date/$domains-crtsh.txt"
+   python3 Tools/crtsh/crtsh.py crtsh -d $domains | tee "result/$date/$domains-crtsh.txt"
 }
 
 subfIgnore() {
