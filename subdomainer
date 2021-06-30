@@ -235,7 +235,7 @@ crt() {
 
 "
 
-   crtsh -d $domains | tee $domains/$date/$domains-crtsh.txt
+   python3 Tools/crtsh/crtsh.py -d $domains | tee $domains/$date/$domains-crtsh.txt
 }
 
 date=$(date +'%m-%d-%Y')
