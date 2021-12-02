@@ -312,7 +312,7 @@ else
 
 "
 
-   cat *.txt | httpx | sort -u | tee all-live.txt
+   cat *.txt | httpx | sort -u | grep -i $domains | tee all-live.txt
 
    cd ../../
 
