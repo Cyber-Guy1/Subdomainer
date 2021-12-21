@@ -302,7 +302,7 @@ else
 
 "
 
-   cat *.txt | sort -u | tee all.txt
+   cat *.txt | sort -u | grep -i $domains | tee all.txt
 
    printf "
 
@@ -312,7 +312,7 @@ else
 
 "
 
-   cat *.txt | httpx | sort -u | grep -i $domains | tee all-live.txt
+   cat *.txt | httpx -ports 80,443,8080,8000,8081,8008,8888,8443,9000,9001,9090 | sort -u | grep -i $domains | tee all-live.txt
 
    cd ../../
 
@@ -484,7 +484,7 @@ else
 
 "
 
-         cat *.txt | sort -u | tee all.txt
+         cat *.txt | sort -u | grep -i $domains | tee all.txt
 
          printf "
 
@@ -494,7 +494,7 @@ else
 
 "
 
-         cat *.txt | httpx | sort -u | tee all-live.txt
+         cat *.txt | httpx -ports 80,443,8080,8000,8081,8008,8888,8443,9000,9001,9090 | sort -u | grep -i $domains | tee all-live.txt
 
          cd ../../
 
@@ -548,7 +548,7 @@ else
 
 "
 
-         cat *.txt | sort -u | tee all.txt
+         cat *.txt | sort -u | grep -i $domains | tee all.txt
 
          printf "
 
@@ -558,7 +558,7 @@ else
 
 "
 
-         cat *.txt | httpx | sort -u | tee all-live.txt
+         cat *.txt | httpx -ports 80,443,8080,8000,8081,8008,8888,8443,9000,9001,9090 | sort -u | grep -i $domains | tee all-live.txt
 
          cd ../../
 
@@ -615,7 +615,7 @@ else
 
 "
 
-         cat *.txt | sort -u | tee all.txt
+         cat *.txt | sort -u | grep -i $domains | tee all.txt
 
          printf "
 
@@ -625,7 +625,7 @@ else
 
 "
 
-         cat *.txt | httpx | sort -u | tee all-live.txt
+         cat *.txt | httpx -ports 80,443,8080,8000,8081,8008,8888,8443,9000,9001,9090 | sort -u | grep -i $domains | tee all-live.txt
 
          cd ../../
 
