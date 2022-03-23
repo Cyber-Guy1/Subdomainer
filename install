@@ -150,6 +150,13 @@ GO111MODULE=on go get -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder
 #
 ###########################################################################################################
 
+
+printf "\n\n\e[92m=============================================\e[0m"
+printf "\n\n\e[92m             amass Installing              \e[0m"
+printf "\n\n\e[92m=============================================\e[0m\n\n"
+
+go install -v github.com/OWASP/Amass/v3/...@master
+
 printf "\n\n\e[92m=============================================\e[0m"
 printf "\n\n\e[92m           	Installing CRTSh               \e[0m"
 printf "\n\n\e[92m=============================================\e[0m\n\n"
@@ -169,6 +176,7 @@ printf "\n\n\e[92m=============================================\e[0m\n\n"
 pip3 install colored
 pip3 install tldextract
 
+sudo cp ~/go/bin/* /usr/bin/
 
 printf "\n\n\e[92m=============================================\e[0m"
 printf "\n\n\e[92m                 Happy Hacking               \e[0m"
