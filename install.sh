@@ -78,3 +78,7 @@ git clone https://github.com/guelfoweb/knock.git
 cd knock || { echo "Error: Unable to change to knock directory."; exit 1; }
 sudo python3 setup.py install
 cd ../ || { echo "Error: Unable to return to the parent directory.";
+
+# Install Subfinder
+section "Installing Subfinder"
+apt install -y subfinder
