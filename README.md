@@ -1,6 +1,8 @@
-# Subdomainer
+# Subdomainer [Deprectated]
 
-An automation tool for domains & subdomains gathering
+
+An automation tool for domains & subdomains gathering.
+(This tool reached its end of life right now)
 
 <div align="center">
   <img src="subdomainer.png" width="80%" height="80%">
