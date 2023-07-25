@@ -65,7 +65,7 @@ And it should work in other security distributions like:
 1- Simply change the installation script permession to executable mode then run it:
 
 ```
-chmod +x install && ./install
+chmod +x install.sh && ./install.sh
 ```
 <small><b>NOTE:</b> If you face any problems while installing please read the `install` script source code,<br> i've attached further installtion instructions in the `install` script source <b>for those who face problems while installing</b></small>
 # Usage:
