@@ -312,7 +312,7 @@ else
 
 "
 
-   cat *.txt | httpx -ports 80,443,8080,8000,8081,8008,8888,8443,9000,9001,9090 | sort -u | grep -i $domains | tee all-live.txt
+   cat *.txt | httpx -ports 80,443,8080,8000,8081,8008,8888,8443,9000,9001,9090 -fc 400,500 | sort -u | grep -i $domains | tee all-live.txt
 
    cd ../../
 
