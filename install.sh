@@ -62,7 +62,7 @@ sudo apt -y install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-d
 
 # Install Sublist3r
 section "Sublist3r Installing"
-git clone https://github.com/aboul3la/Sublist3r.git
+git clone https://github.com/thetowsif/Sublist3r.git
 cd Sublist3r/ || { echo "Error: Unable to change to Sublist3r directory."; exit 1; }
 # Create virtual environment to avoid externally-managed-environment error
 python3 -m venv venv
