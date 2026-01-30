@@ -392,7 +392,7 @@ amsIgnore() {
 
 "
 
-   amass enum -passive -norecursive -noalts -d "$domains -o result/$date/$domains-amass-enum.txt"
+   amass enum -passive -norecursive -noalts -d $domains -o "result/$date/$domains-amass-enum.txt"
 
    printf "
 
