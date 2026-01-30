@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 cat <<"EOF"
 
   _________    ___.        .___                    .__                     
@@ -49,9 +48,9 @@ sudo apt -y install python3
 section "Installing PIP3"
 sudo apt -y install python3-pip
 
-# Install Python2
+# Install Python2 (not available in Ubuntu 24.04, use python-is-python2 or skip)
 section "Installing Python2"
-sudo apt -y install python2
+sudo apt -y install python-is-python2 || echo "Python2 not available, continuing..."
 
 # Install Golang
 section "Installing Golang"
@@ -59,13 +58,17 @@ sudo apt -y install golang
 
 # Install additional packages
 section "Installing Additional Packages"
-sudo apt -y install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev build-essential libssl-dev libffi-dev python-dev libldns-dev jq ruby-full python3-setuptools python3-dnspython rename findutils
+sudo apt -y install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev build-essential libssl-dev libffi-dev python3-dev libldns-dev jq ruby-full python3-setuptools python3-dnspython rename findutils
 
 # Install Sublist3r
 section "Sublist3r Installing"
-git clone https://github.com/aboul3la/Sublist3r.git
+git clone https://github.com/thetowsif/Sublist3r.git
 cd Sublist3r/ || { echo "Error: Unable to change to Sublist3r directory."; exit 1; }
+# Create virtual environment to avoid externally-managed-environment error
+python3 -m venv venv
+source venv/bin/activate
 pip3 install -r requirements.txt
+deactivate
 cd ../ || { echo "Error: Unable to return to the parent directory."; exit 1; }
 
 # Install Github-Search
@@ -76,5 +79,47 @@ git clone https://github.com/gwen001/github-search.git
 section "Knockpy Installing"
 git clone https://github.com/guelfoweb/knock.git
 cd knock || { echo "Error: Unable to change to knock directory."; exit 1; }
-sudo python3 setup.py install
-cd ../ || { echo "Error: Unable to return to the parent directory.";
+# Install using pip with --break-system-packages flag
+pip3 install --break-system-packages .
+cd ../ || { echo "Error: Unable to return to the parent directory."; exit 1; }
+
+# Install additional tools
+section "Installing Additional Subdomain Tools"
+
+# Install Subfinder
+section "Installing Subfinder"
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+
+# Install Assetfinder
+section "Installing Assetfinder"
+go install -v github.com/tomnomnom/assetfinder@latest
+
+# Install Amass
+section "Installing Amass"
+go install -v github.com/owasp-amass/amass/v3/...@master
+
+# Install Findomain
+section "Installing Findomain"
+wget https://github.com/findomain/findomain/releases/latest/download/findomain-linux
+chmod +x findomain-linux
+sudo mv findomain-linux /usr/local/bin/findomain
+
+# Install shuffledns
+section "Installing shuffledns"
+go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
+
+# Install gau
+section "Installing gau"
+go install github.com/lc/gau/v2/cmd/gau@latest
+
+# Install waybackurls
+section "Installing waybackurls"
+go install github.com/tomnomnom/waybackurls@latest
+
+# Install httpx
+section "Installing httpx"
+go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+
+section "Installation Completed!"
+echo "All tools have been installed. Please add GOPATH to your PATH:"
+echo "export PATH=\$PATH:\$(go env GOPATH)/bin"
